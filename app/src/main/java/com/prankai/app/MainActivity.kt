@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         val userPrompt = "توليد رسالة مقلب من نوع: $category"
 
         val body = JSONObject().apply {
-            put("model", "gpt-4o-mini")
+            put("model", "llama-3.3-70b-versatile")
             put("messages", JSONArray().apply {
                 put(JSONObject().apply { put("role", "system"); put("content", systemPrompt) })
                 put(JSONObject().apply { put("role", "user"); put("content", userPrompt) })
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val req = Request.Builder()
-            .url("https://api.openai.com/v1/chat/completions")
+            .url("https://api.groq.com/openai/v1/chat/completions")
             .addHeader("Authorization", "Bearer $apiKey")
             .addHeader("Content-Type", "application/json")
             .post(body.toString().toRequestBody("application/json".toMediaType()))
